@@ -604,3 +604,7 @@ Senior framing
 Say this sentence verbatim:
 
 “I think in set-based operations, reduce data early, and use window functions when row-level context matters.”
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
