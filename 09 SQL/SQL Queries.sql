@@ -1,3 +1,156 @@
+-- List all tables (including system tables)
+SELECT * FROM pg_catalog.pg_tables;
+
+-- List only user-defined tables
+SELECT schemaname, tablename
+FROM pg_catalog.pg_tables
+WHERE schemaname NOT IN ('pg_catalog', 'information_schema');
+
+-- List tables in the 'public' schema
+SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public';
+
+-- database: dvdrental 
+-- Table 
+/*
+"film_actor"
+"address"
+"city"
+"actor"
+"category"
+"country"
+"customer"
+"film"
+"film_category"
+"inventory"
+"language"
+"rental"
+"staff"
+"payment"
+*/
+
+-- Database: Northwind 
+/*
+customer_customer_demo;
+customer_demographics;
+employee_territories;
+order_details;
+orders;
+customers;
+products;
+shippers;
+suppliers;
+territories;
+us_states;
+categories;
+region;
+employees;
+*/
+
+/*
+SQL Joins
+Think in sets:
+Left table = “things I care about”
+Right table = “extra info”
+JOIN decides which rows survive and how unmatched rows behave
+
+We’ll use this running example 👇
+customers
+---------
+customer_id | name
+1           | Alice
+2           | Bob
+3           | Charlie
+
+orders
+------
+order_id | customer_id | amount
+101      | 1           | 100
+102      | 1           | 50
+103      | 2           | 75
+
+1. Inner JOIN - Only matches 
+Return only matching rows deom both the tables i.e. Intersection of two sets
+*/
+
+Select * from film
+-- film_id 
+-- title
+-- release_year 
+
+select * from inventory
+-- invetory_id
+-- film_id 
+-- store_id 
+-- last_update 
+
+select * from rental
+where return_date is null 
+-- rental_id
+-- rental_date
+-- inventory_id 
+-- customer_id 
+-- return_date
+-- staff_id 
+-- last_update
+
+-- List films that have actually been rented 
+SELECT
+    f.film_id,
+    f.title,
+    r.rental_date
+FROM film f
+INNER JOIN inventory i ON f.film_id = i.film_id
+INNER JOIN rental r ON i.inventory_id = r.inventory_id
+-- list of films that are currently rented
+where r.return_date is null
+
+/*
+2. LEFT JOIN (LEFT OUTER JOIN)
+Returns all the rows 
+*/
+
+
+
+
+
+Select * from customer_customer_demo
+
+select * from customers
+
+Select * from employees 
+
+Select * from order_details
+
+Select * from orders
+
+products
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+
 Select * from employees
 -- emp_no, birth_date, first_name, last_name, gender, hire_date
 
@@ -109,4 +262,6 @@ FROM (
 ) ranked
 WHERE dept_salary_rank <= 3
 ORDER BY dept_no, dept_salary_rank;
+
+
 
