@@ -1,0 +1,132 @@
+"""
+Explanation of the test cases for the RangeSumQuery class:
+1. **Empty Array**: Tests the behavior when the input array is empty. The expected output for any query should be 0.
+2. **Same Left and Right Indices**: Tests the case where the left and right indices are the same. The expected output should be the value at that index.
+3. **Single Element Array**: Tests the behavior when the input array contains only one element. The expected output for any query should be that single element.
+4. **All Negative Numbers**: Tests the behavior when the input array contains all negative numbers. The expected output should be the sum of the elements in the specified range, which can be negative.
+5. **All Positive Numbers**: Tests the behavior when the input array contains all positive numbers. The expected output should be the sum of the elements in the specified range, which will always be non-negative.
+6. **Mix of Positive and Negative Numbers**: Tests the behavior when the input array contains a mix of positive and negative numbers. The expected output should be the sum of the elements in the specified range, which can be positive, negative, or zero depending on the range queried.
+7. **Zeros in the Array**: Tests the behavior when the input array contains zeros. The expected output should be the sum of the elements in the specified range, which can be zero for certain ranges.
+8. **Large Numbers and No Overflow**: Tests the behavior when the input array contains large numbers. The expected output should be the sum of the elements in the specified range, ensuring that there is no overflow. 
+9. **Duplicate Numbers**: Tests the behavior when the input array contains duplicate numbers. The expected output should be the sum of the elements in the specified range, including all occurrences of those numbers.
+10. **Sorted Array**: Tests the behavior when the input array is sorted. The expected output should be the sum of the elements in the specified range, which can be calculated efficiently.
+11. **Boundary Indices**: Tests the behavior when the left and right indices are at the boundaries of the array. The expected output should be the sum of all elements in the array.    
+
+Example Usage:
+```python
+nums = [1, 2, 3, 4, 5]
+query_engine = RangeSumQuery(nums)
+# Query the sum from index 1 to 3 (inclusive)
+result = query_engine.sumRange(1, 3)  # Expected output: 2 + 3 + 4 = 9
+print(result)  # Output: 9
+# Query the sum from index 0 to 4 (inclusive)
+result = query_engine.sumRange(0, 4)  # Expected output: 1 + 2 + 3 + 4 + 5 = 15
+print(result)  # Output: 15
+```
+
+Explanation of how the testing framework works:
+The testing framework used here is `unittest`, which is a built-in Python module for writing 
+and running tests. Each test case is defined as a method within the `TestRangeSumQuery` class, 
+which inherits from `unittest.TestCase`. 
+
+Each test method is prefixed with `test_` to indicate that it is a test case. 
+The `unittest` framework automatically discovers and runs these test methods when
+ the script is executed. 
+ 
+ The `assertEqual` method is used to compare the expected output with the actual 
+ output from the `sumRange` method. If they match, the test passes; otherwise, 
+ it fails and an error message is displayed. 
+ 
+ The `if __name__== "__main__":` block at the end of the script allows the tests 
+ to be run when the script is executed directly.     
+
+"""
+
+# import sys
+# import os
+
+# # Append the absolute path of the 'src' directory to sys.path
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+
+# from range_sum_query import RangeSumQuery
+
+
+# # --- Pytest Functions (No class wrapping needed!) ---
+
+# def test_case_1_empty_array():
+#     """1. If the input array is empty, return 0 for any query."""
+#     query_engine = RangeSumQuery([])
+#     assert query_engine.sumRange(0, 0) == 0
+
+
+# def test_case_2_same_left_right():
+#     """2. If left and right are the same, return the value at that index."""
+#     nums = [10, -5, 20, 30]
+#     query_engine = RangeSumQuery(nums)
+#     assert query_engine.sumRange(1, 1) == -5
+
+
+# def test_case_3_single_element_array():
+#     """3. If the input array contains only one element, return that element for any query."""
+#     query_engine = RangeSumQuery([42])
+#     assert query_engine.sumRange(0, 0) == 42
+
+
+# def test_case_4_all_negative_numbers():
+#     """4. If the input array contains all negative numbers, the sum can be negative."""
+#     nums = [-2, -3, -1, -5]
+#     query_engine = RangeSumQuery(nums)
+#     assert query_engine.sumRange(0, 2) == -6
+
+
+# def test_case_5_all_positive_numbers():
+#     """5. If the input array contains all positive numbers, the sum will always be non-negative."""
+#     nums = [1, 2, 3, 4]
+#     query_engine = RangeSumQuery(nums)
+#     assert query_engine.sumRange(1, 3) >= 0
+
+
+# def test_case_6_mix_positive_and_negative():
+#     """6. Input contains a mix of positive and negative numbers."""
+#     nums = [-2, 0, 3, -5, 2, -1]
+#     query_engine = RangeSumQuery(nums)
+#     assert query_engine.sumRange(0, 2) == 1
+#     assert query_engine.sumRange(2, 5) == -1
+
+
+# def test_case_7_zeros_in_array():
+#     """7. If the input array contains zeros, the sum can be zero for certain ranges."""
+#     nums = [0, 0, 5, -5, 0]
+#     query_engine = RangeSumQuery(nums)
+#     assert query_engine.sumRange(0, 1) == 0
+#     assert query_engine.sumRange(2, 3) == 0
+
+
+# def test_case_8_large_numbers_no_overflow():
+#     """8. Ensure that the sum does not overflow."""
+#     large_val = sys.maxsize
+#     nums = [large_val, large_val, -large_val]
+#     query_engine = RangeSumQuery(nums)
+#     assert query_engine.sumRange(0, 1) == large_val * 2
+
+
+# def test_case_9_duplicate_numbers():
+#     """9. Inclusion includes all occurrences of duplicate numbers."""
+#     nums = [5, 5, 5, 10]
+#     query_engine = RangeSumQuery(nums)
+#     assert query_engine.sumRange(0, 2) == 15
+
+
+# def test_case_10_sorted_array():
+#     """10. Sorted arrays evaluate cleanly."""
+#     nums = [1, 3, 5, 7]
+#     query_engine = RangeSumQuery(nums)
+#     assert query_engine.sumRange(1, 3) == 15
+
+
+# def test_case_11_boundary_indices():
+#     """11. Queries at exact edge boundaries evaluate across the whole scope."""
+#     nums = [10, 20, 30, 40]
+#     query_engine = RangeSumQuery(nums)
+#     assert query_engine.sumRange(0, len(nums) - 1) == 100
+
